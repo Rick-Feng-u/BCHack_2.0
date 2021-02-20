@@ -15,6 +15,9 @@ snake-ai/coverage
 # production
 snake-ai/build
 
+# react files
+*/package-lock.json
+
 # misc
 .DS_Store
 .env.local
