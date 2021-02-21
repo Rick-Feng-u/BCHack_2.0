@@ -4,7 +4,7 @@ import '../styles/fruit.scss';
 export function Fruit({type, position}) {
     const classes = `fruit fruit-${type}`;
     return (
-        <div className={classes}>
+        <div style={{gridArea: `${position[1]} / ${position[0]} / span 1 / span 1`}} className={classes}>
 
         </div>
     )
