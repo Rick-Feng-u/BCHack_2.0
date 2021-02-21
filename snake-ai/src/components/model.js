@@ -38,3 +38,7 @@ class Linear_Qnnet{
             return model;
           }
     }
+
+    class DQNTrainer{
+        // TODO
+    }
