@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import '../styles/board.scss';
 import Snake from "./Snake";
 import Fruit from "./Fruit";
@@ -9,12 +9,17 @@ function Board() {
 
     const [fruits, setFruits] = useState([]);
     const [snake, setSnake] = useState([]);
+    const [addBody, setAddBody] = useState(false);
 
     //responsible for
     //TODO: randomly make new fruit, render <Fruit/> components
     //TODO: render <Snake>
     //TODO: pass setSnake() into <Snake/> as props
     //TODO: sets the props for <Score/>
+
+    // useEffect(() => {
+    //     if(addBody) setAddBody(false);
+    // }, [addBody]);
 
     useEffect(() => {
         //check for eating fruit
@@ -23,6 +28,7 @@ function Board() {
             fruits.forEach((fruit, index) => {
                 if (equals(snakeHeadPosition, fruit.position)) {
                     consumeFruit(index);
+                    console.log(`AFTER ${addBody}`);
                 }
             });
 
@@ -31,7 +37,6 @@ function Board() {
                 if(index > 0 && equals(snakeHeadPosition, [snakePiece.x, snakePiece.y])) gameOver();
             });
         }
-
     }, [snake]);
 
     useEffect(() => {
@@ -61,6 +66,9 @@ function Board() {
 
     const consumeFruit = (index) => {
         //TODO: increment score? also increment snake length
+        console.log(`CHECK ${addBody}`);
+        setAddBody(true);
+
         removeFruit(index);
     };
 
@@ -113,9 +121,10 @@ function Board() {
 
     return (
         <div className={'board'}>
-            <Snake setSnake={setSnake} data={snake}/>
+            <Snake setSnake={setSnake} addBody={addBody} setAddBody={setAddBody}/>
             {fruits.map((fruit, index) => {
-                return <Fruit key={`${index}${fruit.position[0]}${fruit.position[1]}${fruit.type}`} type={fruit.type}
+                return <Fruit key={`${index}${fruit.position[0]}${fruit.position[1]}${fruit.type}`}
+                              type={fruit.type}
                               position={fruit.position}/>
             })}
         </div>
