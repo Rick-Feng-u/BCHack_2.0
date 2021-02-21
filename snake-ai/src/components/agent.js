@@ -17,7 +17,7 @@ class Agent{
     }
 
     remember(state, action, reward, new_state, game_over){
-        continue;
+        this.memory.append((state, action, reward, nextState, game_over));
     }
 
     train_long_memory(){
@@ -38,10 +38,10 @@ class Agent{
 
         }
         else{
-            let state0 = tf.tensor(state, dtype=torch.float)
-            let prediction = this.model(state0)
-            move = tf.tf.math.argmax(prediction)
-            final_move[move] = 1
+            let state0 = tf.tensor(state, dtype=torch.float);
+            let prediction = this.model(state0);
+            move = tf.tf.math.argmax(prediction);
+            final_move[move] = 1;
         }
     }
 
@@ -77,6 +77,8 @@ function train() {
 
             }
         }
+
+        print("Game: ", agent.num_games, "Score: ", score, "highest score currently: ", record);
 
     }
 }
