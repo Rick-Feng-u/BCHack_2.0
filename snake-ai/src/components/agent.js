@@ -1,4 +1,5 @@
 import model from "./model"
+import * as tf from '@tensorflow/tfjs';
 MAX_MEMORY = 100000 //can change
 BATCH_SIZE = 1000 //can change
 LR = 0.001 // Learning rate: can change
@@ -32,7 +33,15 @@ class Agent{
         let final_move = [0,0,0];
         let randomMove = Math.random() * 200
         if(randomMove < this.epsilon){
-            let move = Math.random() * 2;
+            var move = parseInt(Math.random() * 2);
+            final_move[move] = 1;
+
+        }
+        else{
+            let state0 = tf.tensor(state, dtype=torch.float)
+            let prediction = this.model(state0)
+            move = tf.tf.math.argmax(prediction)
+            final_move[move] = 1
         }
     }
 
