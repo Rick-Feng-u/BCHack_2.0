@@ -1,8 +1,8 @@
-
+import model from "./model"
 MAX_MEMORY = 100_000 //can change
 BATCH_SIZE = 1000 //can change
 LR = 0.001 // Learning rate: can change
-class agent{
+class Agent{
     constructor(){
         this.num_games = 0;
         this.epsilon = 0 // randomness
@@ -31,4 +31,18 @@ class agent{
         continue;
     }
 
+}
+
+function train() {
+    const total_score = 0
+    const record = 0;
+    let agent = new Agent;
+    // game = ?
+
+    while(true){
+        const old_state = agent.get_state(game);
+
+        const final_move = agent.get_action(old_state);
+
+    }
 }
