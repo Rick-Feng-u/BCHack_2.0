@@ -93,14 +93,6 @@ function Snake(props) {
         snake[i].y += 1;
       else if (snake[i].dir === 3)
         snake[i].x -= 1;
-      if (snake[i].x > 40)
-        snake[i].x = 1;
-      if (snake[i].x < 1)
-        snake[i].x = 40
-      if (snake[i].y > 40)
-        snake[i].y = 1;
-      if (snake[i].y < 1)
-        snake[i].y = 40
     }
   }
 
