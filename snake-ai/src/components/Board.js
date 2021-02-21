@@ -4,7 +4,7 @@ import '../styles/board.scss';
 import Snake from "./Snake";
 import Fruit from "./Fruit";
 
-export function Board() {
+function Board() {
     //fruit schema
     // {
     //     type: string
@@ -52,3 +52,5 @@ export function Board() {
         </div>
     );
 }
+
+export default Board;

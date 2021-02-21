@@ -1,0 +1,21 @@
+@use "_global";
+@use "_mixins";
+@use "_variables";
+
+.snake__head {
+  width: 1rem;
+  height: 1rem;
+  background-color: grey;
+}
+
+.snake__body {
+  width: 1rem;
+  height: 1rem;
+  background-color: grey;
+}
+
+.snake__tail {
+  width: 1rem;
+  height: 1rem;
+  background-color: grey;
+}
