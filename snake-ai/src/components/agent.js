@@ -1,5 +1,8 @@
 import model from "./model"
 import * as tf from '@tensorflow/tfjs';
+
+
+
 MAX_MEMORY = 100000 //can change
 BATCH_SIZE = 1000 //can change
 LR = 0.001 // Learning rate: can change
@@ -21,11 +24,20 @@ class Agent{
     }
 
     train_long_memory(){
-        continue;
+        if(this.memeory.length() < BATCH_SIZE){
+            const mini_sample = this.memeory;
+        }
+        else{
+            const mini_sample = this.memeory[Math.floor(Math.random() * BATCH_SIZE)];
+        }
+
+        for (state, action, reward, nextState, game_over in mini_sample){
+            this.trainer.train_step(state, action, reward, nextState, game_over);
+        }
     }
 
     train_short_memory(){
-        continue;
+        this.trainer.train_step(state, action, reward, nextState, game_over);
     }
 
     get_action(){
