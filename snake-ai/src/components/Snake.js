@@ -50,7 +50,7 @@ function Snake(props) {
     const interval = setInterval(() => {
       updatePositions();
       setSnakeBodyList(createBody());
-      props.setSnake(snake);
+      props.setSnake([...snake]);
       }, 250);
     return () => {
       clearInterval(interval);

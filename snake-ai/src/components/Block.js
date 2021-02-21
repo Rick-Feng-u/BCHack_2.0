@@ -8,3 +8,6 @@ export function Block({type}) {
         </div>
     )
 }
+
+export default Block;
+
