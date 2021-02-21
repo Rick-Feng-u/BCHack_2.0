@@ -67,6 +67,9 @@ function Snake(props) {
         direction = 2;
       if (e.key === "a" || e.key === "ArrowLeft")
         direction = 3;
+
+      if (e.key === "n")
+        addBodyPart();
     }
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
@@ -91,6 +94,26 @@ function Snake(props) {
       else if (snake[i].dir === 3)
         snake[i].x -= 1;
     }
+  }
+
+  const addBodyPart = () => {
+    let newX = snake[snake.length - 1].x;
+    let newY = snake[snake.length - 1].y;
+    let newDirection = snake[snake.length - 1].dir;
+    if (snake[snake.length - 1].dir === 0)
+      newY += 1;
+    else if (snake[snake.length - 1].dir === 1)
+      newX -= 1;
+    else if (snake[snake.length - 1].dir === 2)
+      newY -= 1;
+    else if (snake[snake.length - 1].dir === 3)
+      newX += 1;
+
+    snake.push({
+      x: newX,
+      y: newY,
+      dir: newDirection
+    });
   }
 
   return (
