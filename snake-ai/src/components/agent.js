@@ -1,5 +1,5 @@
 import model from "./model"
-MAX_MEMORY = 100_000 //can change
+MAX_MEMORY = 100000 //can change
 BATCH_SIZE = 1000 //can change
 LR = 0.001 // Learning rate: can change
 class Agent{
@@ -28,21 +28,46 @@ class Agent{
     }
 
     get_action(){
-        continue;
+        this.epsilon = 80 - this.num_games;
+        let final_move = [0,0,0];
+        let randomMove = Math.random() * 200
+        if(randomMove < this.epsilon){
+            let move = Math.random() * 2;
+        }
     }
 
 }
 
 function train() {
-    const total_score = 0
-    const record = 0;
+    let total_score = 0
+    let record = 0;
     let agent = new Agent;
     // game = ?
 
     while(true){
-        const old_state = agent.get_state(game);
+        let old_state = agent.get_state(game);
 
-        const final_move = agent.get_action(old_state);
+        let final_move = agent.get_action(old_state);
+
+        let [reward, game_over, score] = game.play_step(final_move);
+
+        let new_state = agent.getState(game);
+
+        agent.train_short_memeory(old_state,final_move,reward,new_state,game_over);
+
+        agent.remember(old_state,final_move,reward,new_state,game_over);
+
+        if(game_over){
+            game.reset();
+            agent.num_games += 1
+            agent.train_long_memory()
+
+            if(score > record){
+                record = score;
+                agent.model.save();
+
+            }
+        }
 
     }
 }
