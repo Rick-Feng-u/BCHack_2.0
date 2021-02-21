@@ -11,16 +11,6 @@ function Board() {
     const [snake, setSnake] = useState([]);
     const [addBody, setAddBody] = useState(false);
 
-    //responsible for
-    //TODO: randomly make new fruit, render <Fruit/> components
-    //TODO: render <Snake>
-    //TODO: pass setSnake() into <Snake/> as props
-    //TODO: sets the props for <Score/>
-
-    // useEffect(() => {
-    //     if(addBody) setAddBody(false);
-    // }, [addBody]);
-
     useEffect(() => {
         //check for eating fruit
         if (Array.isArray(snake) && snake.length !== 0) {
@@ -28,7 +18,6 @@ function Board() {
             fruits.forEach((fruit, index) => {
                 if (equals(snakeHeadPosition, fruit.position)) {
                     consumeFruit(index);
-                    console.log(`AFTER ${addBody}`);
                 }
             });
 
@@ -66,9 +55,7 @@ function Board() {
 
     const consumeFruit = (index) => {
         //TODO: increment score? also increment snake length
-        console.log(`CHECK ${addBody}`);
         setAddBody(true);
-
         removeFruit(index);
     };
 
